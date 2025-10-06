@@ -96,6 +96,7 @@ tr.editing {
     border-radius: 8px;
     border: 1px solid #ccc;
     padding: 6px;
+    margin-bottom: 10px;
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button {
@@ -106,9 +107,7 @@ tr.editing {
     border: none;
 }
 
-.dataTables_wrapper .dataTables_paginate .paginate_button.current {
-    background-color: #00574B !important;
-}
+
 
 /* Encabezado de la tabla DataTables */
 #placesTable thead {
