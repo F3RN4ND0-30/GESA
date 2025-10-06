@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de Lugares de Entrega</title>
+    <link rel="stylesheet" href="../../backend/css/lugares/direcciones.css" />
+    <!-- DataTables CSS v1.13.6 -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="table-card">
+            <div class="header-flex">
+                <h2>Lugares de Entrega</h2>
+                <button id="openModalBtn">+ Agregar Lugar</button>
+            </div>
+
+            <table id="placesTable" class="display">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Beneficiarios</th>
+                        <th>Encargado</th>
+                        <th>Dirección</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="placesTableBody">
+                    <tr>
+                        <td contenteditable="false">Centro Comunal Norte</td>
+                        <td contenteditable="false">120</td>
+                        <td contenteditable="false">Ana Gómez</td>
+                        <td contenteditable="false">Av. Libertad 102</td>
+                        <td><button class="edit-btn">Editar</button></td>
+                    </tr>
+                    <!-- otras filas de ejemplo -->
+                    <tr>
+                        <td contenteditable="false">Centro Este</td>
+                        <td contenteditable="false">85</td>
+                        <td contenteditable="false">Luis Pérez</td>
+                        <td contenteditable="false">Jr. Los Olivos 350</td>
+                        <td><button class="edit-btn">Editar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal para agregar lugar -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span id="closeModalBtn" class="close">&times;</span>
+            <h3>Agregar Nuevo Lugar</h3>
+            <form id="placeForm">
+                <input type="text" id="nombreLugar" placeholder="Nombre del lugar" required />
+                <input type="number" id="beneficiarios" placeholder="Total de beneficiarios" required />
+                <input type="text" id="encargado" placeholder="Encargado" required />
+                <input type="text" id="direccion" placeholder="Dirección" required />
+                <button type="submit">Guardar Lugar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- jQuery necesario para DataTables -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- DataTables JS v1.13.6 -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+    <script src="../../backend/js/lugares/direcciones.js"></script>
+</body>
+
+</html>
