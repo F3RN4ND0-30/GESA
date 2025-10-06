@@ -8,6 +8,8 @@ function active($pages)
     return in_array($filename, $pages) ? 'active' : '';
 }
 ?>
+<link rel="stylesheet" href="../../backend/css/navbar/navbar.css" />
+
 <nav class="navbar">
     <div class="nav-left">
         <div class="logo">
