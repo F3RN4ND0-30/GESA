@@ -3,14 +3,16 @@ body {
     font-family: 'Inter', sans-serif;
     background-color: #10aa6a;
     min-height: 100vh;
-    padding: 60px 30px;
+    padding: 0 30px;
+    padding-top: 0;
+    /* o solo elimina el top */
     color: #2C3A4B;
     box-sizing: border-box;
 }
 
 .container {
-    max-width: 1300px;
-    margin: 0 auto;
+    padding-top: 60px;
+    /* o margen */
 }
 
 .form-card,

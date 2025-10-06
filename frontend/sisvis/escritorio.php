@@ -5,52 +5,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GESA - Dashboard</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../../backend/css/navbar/navbar.css" />
     <link rel="stylesheet" href="../../backend/css/sisvis/escritorio.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="nav-left">
-            <div class="logo">
-                <i class="fas fa-cube"></i>
-                <div class="logo-text">
-                    <span class="logo-title">GESA</span>
-                    <!-- Subtítulo removido para que escale a otras áreas -->
-                    <!-- <span class="logo-subtitle">Vaso de Leche - PECOSA</span> -->
-                </div>
-            </div>
 
-            <div class="nav-menu">
-                <a href="#" class="nav-link active">Dashboard</a>
-                <a href="../entradas/registro_productos.php" class="nav-link">Entradas</a>
-                <a href="#" class="nav-link">PECOSA</a>
-                <a href="#" class="nav-link">Almacén</a>
-                <a href="#" class="nav-link">Reportes</a>
-            </div>
-        </div>
+    <?php include __DIR__ . '/../navbar/navbar.php'; ?>
 
-        <div class="nav-right">
-            <div class="search-bar">
-                <i class="fas fa-search"></i>
-                <input type="text" placeholder="Buscar PECOSA, insumo o movimiento...">
-            </div>
-
-            <!-- Botón oculto en el dashboard: se mostrará en el módulo PECOSA -->
-            <!-- <button class="btn-new-pecosa"><i class="fas fa-plus"></i> Nueva PECOSA</button> -->
-
-            <div class="user-profile">
-                <div class="user-avatar"><i class="fas fa-user"></i></div>
-                <span>Johan</span>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Main Content -->
     <div class="container">
         <div class="main-content">
-            <!-- Header -->
             <div class="page-header">
                 <div>
                     <h1>Resumen de hoy</h1>
@@ -58,7 +25,6 @@
                 </div>
             </div>
 
-            <!-- Stats Cards -->
             <div class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-header">
@@ -97,9 +63,7 @@
                 </div>
             </div>
 
-            <!-- Main Cards -->
             <div class="cards-grid">
-                <!-- PECOSA del mes (con auto-tone activado) -->
                 <div class="main-card pecosa-card auto-tone">
                     <div class="card-content">
                         <div class="pecosa-number">130</div>
@@ -111,7 +75,6 @@
                     </div>
                 </div>
 
-                <!-- Avance de distribución -->
                 <div class="main-card distribution-card">
                     <div class="distribution-header">
                         <div>
@@ -123,7 +86,6 @@
                 </div>
             </div>
 
-            <!-- Actividades recientes -->
             <div class="recent-activity">
                 <div class="section-header">
                     <h2>Actividad Reciente</h2>
@@ -139,7 +101,6 @@
                         </div>
                         <span class="activity-time">Hace 5 min</span>
                     </div>
-
                     <div class="activity-item">
                         <div class="activity-icon salidas"><i class="fas fa-arrow-up"></i></div>
                         <div class="activity-info">
@@ -148,7 +109,6 @@
                         </div>
                         <span class="activity-time">Hace 23 min</span>
                     </div>
-
                     <div class="activity-item">
                         <div class="activity-icon stock"><i class="fas fa-exclamation-triangle"></i></div>
                         <div class="activity-info">
@@ -161,9 +121,7 @@
             </div>
         </div>
 
-        <!-- Sidebar -->
         <aside class="sidebar">
-            <!-- Calendario -->
             <div class="calendar-card">
                 <div class="calendar-header">
                     <h3>Calendario</h3>
@@ -218,7 +176,6 @@
                 </div>
             </div>
 
-            <!-- Tu Agenda -->
             <div class="agenda-card">
                 <div class="agenda-header">
                     <h3>Tu Agenda</h3>
