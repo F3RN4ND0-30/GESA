@@ -289,7 +289,6 @@ document.querySelectorAll('.bubble').forEach(bubble => {
         setTimeout(() => bubble.remove(), 300);
     });
 });
-
 </script>
 
 </body>
