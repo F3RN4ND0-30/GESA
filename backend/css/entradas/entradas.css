@@ -1,0 +1,125 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ================== Variables del dashboard ================== */
+:root {
+    /* Marca */
+    --primary-color: #10aa6a;
+    --primary-dark: #0d8f58;
+    --primary-light: #e8f7f0;
+    --primary-gradient-start: #12b876;
+    --primary-gradient-end: #0d8f58;
+
+    /* Fondo */
+    --background: linear-gradient(135deg, #0ea865 0%, #0d8f58 100%);
+    --background-light: rgba(255, 255, 255, 0.1);
+
+    /* Superficies y texto */
+    --surface: #ffffff;
+    --text-primary: #1a1a1a;
+    --text-secondary: #64748b;
+    --text-on-primary: #ffffff;
+    --border: #e2e8f0;
+
+    /* Sombras y radios */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.12);
+    --shadow-green: 0 10px 40px rgba(16, 170, 106, 0.2);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+
+    /* Layout */
+    --container-max: 1280px;
+    /* límite de ancho del contenido */
+}
+
+/* Tipografía fluida: evita que se vea mini o enorme */
+html {
+    font-size: clamp(14px, 1.05vw + 10px, 16px);
+}
+
+body {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Oxygen, Ubuntu, sans-serif;
+    background: var(--background);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+
+.main-content {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.panel-left {
+    margin-left: 50px;
+    background-color: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: var(--shadow-md);
+}
+
+.panel-right {
+    margin-right: 50px;
+    background-color: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: var(--shadow-md);
+}
+
+.panel-left {
+    flex: 1;
+}
+
+.panel-right {
+    flex: 2;
+}
+
+.panel-left h3,
+.panel-right h3 {
+    margin-bottom: 20px;
+    color: var(--text-primary);
+    font-size: 20px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+#addProductBtn {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.bottom-actions {
+    margin-top: 2rem;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+.btn-eliminar {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-eliminar:hover {
+    background-color: #c0392b;
+}

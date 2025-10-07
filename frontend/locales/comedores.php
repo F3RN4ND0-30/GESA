@@ -19,7 +19,7 @@
     <div class="container">
         <div class="table-card">
             <div class="header-flex">
-                <h2>Lugares de Entrega</h2>
+                <h2>GESA - COMEDORES</h2>
                 <button id="openModalBtn">+ Agregar Lugar</button>
             </div>
 
