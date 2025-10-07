@@ -1,0 +1,100 @@
+/* =============== Responsivo MEJORADO =============== */
+@media (max-width: 1080px) {
+  .auth {
+    grid-template-columns: 1fr;
+    width: min(760px, 94vw);
+  }
+
+  .auth-left {
+    margin: 20px 12px 8px;
+    border-radius: var(--radius);
+    min-height: 280px;
+    height: auto;
+    padding: 24px 24px 20px;
+  }
+
+  .auth-right {
+    margin: 8px 12px 20px;
+    border-radius: var(--radius);
+    min-height: 420px;
+    height: 520px;
+  }
+
+  .brand {
+    padding-top: 5px;
+    margin-bottom: 5px;
+  }
+  .illustration {
+    margin: 15px 0;
+  }
+
+  .main-icon {
+    width: 180px;
+    height: 180px;
+  }
+  .main-icon i {
+    font-size: 100px;
+  }
+
+  .wave {
+    height: 120px;
+  }
+  .wave-2 {
+    height: 100px;
+  }
+
+  .brand-foot {
+    bottom: 15px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 580px) {
+  .brand-title {
+    font-size: 30px;
+  }
+  .brand-sub {
+    font-size: 0.8rem;
+  }
+  .brand {
+    padding-top: 0;
+  }
+  .illustration {
+    margin: 10px 0;
+  }
+
+  .main-icon {
+    width: 150px;
+    height: 150px;
+  }
+  .main-icon i {
+    font-size: 75px;
+  }
+
+  .glass {
+    inset: 20px;
+    gap: 18px;
+  }
+  .glass h2 {
+    font-size: 24px;
+  }
+
+  .form {
+    gap: 16px;
+  }
+  .control {
+    padding: 10px 12px;
+  }
+
+  .wave {
+    height: 100px;
+  }
+  .wave-2 {
+    height: 80px;
+  }
+
+  .brand-foot {
+    bottom: 12px;
+    font-size: 0.8rem;
+  }
+}

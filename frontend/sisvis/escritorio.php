@@ -1,3 +1,10 @@
+<?php
+require_once __DIR__ . '/../../backend/php/autenticacion.php';
+verificar_sesion(); // exige sesión y aplica no-cache
+
+$hoy = new DateTime('now', new DateTimeZone('America/Lima')); // ajusta tu TZ si hace falta
+$fecha_hoy = $hoy->format('d/m/Y');
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -19,7 +26,7 @@
             <div class="page-header">
                 <div>
                     <h1>Resumen de hoy</h1>
-                    <p class="date-text"><i class="far fa-calendar"></i> 06/10/2025</p>
+                    <p class="date-text"><i class="far fa-calendar"></i> <?= htmlspecialchars($fecha_hoy) ?></p>
                 </div>
             </div>
 
