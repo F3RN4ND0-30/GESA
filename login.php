@@ -99,6 +99,11 @@ body {
     box-shadow: 0 0 25px rgba(0,0,0,0.35);
     overflow: hidden;
     background: white;
+
+    /* ANIMACIÓN DE APARICIÓN + BRILLO SUAVE */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slyContainer 1.5s forwards, slyGlow 4s ease-in-out infinite;
 }
 
 /* SECCIÓN IZQUIERDA */
@@ -242,6 +247,21 @@ body {
 @keyframes fadeInText {
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* Animación de aparición del container */
+@keyframes slyContainer {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* BRILLO SUAVE TIPO BARRA SLY */
+@keyframes slyGlow {
+    0%   { box-shadow: 0 0 0px rgba(255,255,255,0); }
+    25%  { box-shadow: 0 0 25px rgba(255,255,255,0.5); }
+    50%  { box-shadow: 0 0 40px rgba(255,255,255,0.7); }
+    75%  { box-shadow: 0 0 25px rgba(255,255,255,0.5); }
+    100% { box-shadow: 0 0 0px rgba(255,255,255,0); }
+}
+
 </style>
 </head>
 <body>
@@ -289,7 +309,6 @@ document.querySelectorAll('.bubble').forEach(bubble => {
         setTimeout(() => bubble.remove(), 300);
     });
 });
-
 </script>
 
 </body>
