@@ -9,6 +9,14 @@
     <link rel="stylesheet" href="../../backend/css/registro/registro_producto.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <!-- DataTables JS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <!-- Selectize CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/selectize/dist/css/selectize.default.css">
+
 </head>
 
 <body>
@@ -17,7 +25,26 @@
 
     <div class="container">
         <div class="form-card">
-            <h2>Registrar Producto</h2>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <h2 style="margin: 0;">Registrar Producto</h2>
+                <div style="margin-left: auto;">
+                    <button
+                        onclick="openModal()"
+                        style="
+                            padding: 10px 14px;
+                            background-color: #007bff;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            cursor: pointer;
+                            font-size: 14px;
+                            white-space: nowrap;
+                        ">
+                        + Unid. Medida
+                    </button>
+                </div>
+            </div>
+
             <form id="productForm">
                 <div class="form-grid">
                     <div style="margin-right: 15px;">
@@ -30,11 +57,9 @@
                     </div>
                     <div style="margin-right: 15px;">
                         <label for="unidad">Unidad de Medida</label>
-                        <input type="text" id="unidad" required placeholder="Ej. Unidad, Caja" />
-                    </div>
-                    <div style="margin-right: 10px;">
-                        <label for="cantidad">Cantidad</label>
-                        <input type="number" id="cantidad" required placeholder="Ej. 15" />
+                        <select id="unidad" required>
+                            <option value=""></option>
+                        </select>
                     </div>
                 </div>
                 <button type="submit">Guardar Producto</button>
@@ -43,63 +68,42 @@
 
         <div class="table-card">
             <h3>Productos Registrados</h3>
-            <table>
+            <table id="productosTable">
                 <thead>
                     <tr>
                         <th>Artículo</th>
                         <th>Marca</th>
                         <th>Unidad</th>
-                        <th>Cantidad</th>
+                        <th>Estado</th>
                     </tr>
                 </thead>
                 <tbody id="productTableBody">
-                    <tr>
-                        <td>Monitor LED</td>
-                        <td>LG</td>
-                        <td>Unidad</td>
-                        <td>10</td>
-                    </tr>
-                    <tr>
-                        <td>Teclado Mecánico</td>
-                        <td>Redragon</td>
-                        <td>Unidad</td>
-                        <td>25</td>
-                    </tr>
-                    <tr>
-                        <td>Mouse Inalámbrico</td>
-                        <td>Logitech</td>
-                        <td>Caja</td>
-                        <td>12</td>
-                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
 
-    <script>
-        const form = document.getElementById("productForm");
-        const tableBody = document.getElementById("productTableBody");
+    <!-- MODAL -->
+    <div id="unidadModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3>Nueva Unidad de Medida</h3>
+            <form id="unidadForm">
+                <input type="text" id="descripcion" placeholder="Descripción" required />
+                <button type="submit">Guardar Unidad</button>
+            </form>
+        </div>
+    </div>
 
-        form.addEventListener("submit", function(e) {
-            e.preventDefault();
+    <!-- jQuery necesario para DataTables -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- DataTables JS v1.13.6 -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <!-- Selectize JS -->
+    <script src="https://cdn.jsdelivr.net/npm/selectize/dist/js/standalone/selectize.min.js"></script>
 
-            const articulo = document.getElementById("articulo").value;
-            const marca = document.getElementById("marca").value;
-            const unidad = document.getElementById("unidad").value;
-            const cantidad = document.getElementById("cantidad").value;
 
-            const row = document.createElement("tr");
-            row.innerHTML = `
-        <td>${articulo}</td>
-        <td>${marca}</td>
-        <td>${unidad}</td>
-        <td>${cantidad}</td>
-      `;
-
-            tableBody.appendChild(row);
-            form.reset();
-        });
-    </script>
+    <script src="../../backend/js/productos/productos.js"></script>
 </body>
 
 </html>
