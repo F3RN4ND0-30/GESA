@@ -1,13 +1,35 @@
 $(document).ready(function () {
-    // Inicializar DataTables sobre la tabla
+    const modal = $('#modal');
+    const openModalBtn = $('#openModalBtn');
+    const closeModalBtn = $('#closeModalBtn');
+    const form = $('#placeForm');
+
+    // Inicializar DataTable con datos desde el servidor
     const table = $('#placesTable').DataTable({
-        // Puedes ajustar opciones si quieres
+        ajax: {
+            url: '../../backend/php/locales/listar_comedores.php',
+            dataSrc: ''
+        },
+        columns: [
+            { data: 'Nombre' },
+            { data: 'Beneficiarios' },
+            { data: 'Encargado' },
+            { data: 'Direccion' },
+            {
+                data: null,
+                defaultContent: '<button class="edit-btn">Editar</button>',
+                orderable: false
+            }
+        ],
+        createdRow: function (row, data) {
+            // ✅ Asignar el ID del comedor como atributo data-id en la fila
+            $(row).attr('data-id', data.IdComedor);
+        },
         paging: true,
         searching: true,
         ordering: true,
         lengthChange: false,
         pageLength: 5,
-        // idioma en español (opcional)
         language: {
             search: "Buscar:",
             zeroRecords: "No se encontraron resultados",
@@ -23,71 +45,85 @@ $(document).ready(function () {
         }
     });
 
-    // abrir/cerrar modal, agregar lugar, editar etc como antes
+    // Abrir modal
+    openModalBtn.click(() => modal.show());
 
-    const modal = document.getElementById("modal");
-    const openModalBtn = document.getElementById("openModalBtn");
-    const closeModalBtn = document.getElementById("closeModalBtn");
-    const form = document.getElementById("placeForm");
-    const tableBody = document.getElementById("placesTableBody");
-
-    openModalBtn.onclick = () => modal.style.display = "block";
-    closeModalBtn.onclick = () => modal.style.display = "none";
-    window.onclick = (e) => {
-        if (e.target === modal) modal.style.display = "none";
-    };
-
-    form.addEventListener("submit", function (e) {
-        e.preventDefault();
-
-        const nombre = document.getElementById("nombreLugar").value;
-        const beneficiarios = document.getElementById("beneficiarios").value;
-        const encargado = document.getElementById("encargado").value;
-        const direccion = document.getElementById("direccion").value;
-
-        // Añadir nueva fila al DataTable
-        table.row.add([
-            nombre,
-            beneficiarios,
-            encargado,
-            direccion,
-            '<button class="edit-btn">Editar</button>'
-        ]).draw(false);
-
-        modal.style.display = "none";
-        form.reset();
+    // Cerrar modal y resetear formulario
+    closeModalBtn.click(() => {
+        modal.hide();
+        form[0].reset();
     });
 
-    // Manejar el editar
-    $('#placesTable tbody').on('click', '.edit-btn', function () {
-        const tr = $(this).closest('tr');
-        const rowData = table.row(tr);
+    // Cerrar modal al hacer clic fuera del contenido
+    $(window).click(function (event) {
+        if ($(event.target).is(modal)) {
+            modal.hide();
+            form[0].reset();
+        }
+    });
 
-        if (!tr.hasClass('editing')) {
-            // poner en modo edición
-            tr.addClass('editing');
-            // hacer las celdas editables visualmente
-            tr.find('td').each(function (index) {
-                if (index < 4) {
-                    const currentText = $(this).text();
-                    $(this).html('<input type="text" value="' + currentText + '">');
+    // Enviar nuevo comedor (alta)
+    form.submit(function (e) {
+        e.preventDefault();
+
+        const data = {
+            nombre: $('#nombreLugar').val(),
+            beneficiarios: $('#beneficiarios').val(),
+            encargado: $('#encargado').val(),
+            direccion: $('#direccion').val()
+        };
+
+        $.post('../../backend/php/locales/guardar_comedor.php', data, function (response) {
+            if (response.success) {
+                modal.hide();
+                form[0].reset();
+                table.ajax.reload(null, false); // recargar tabla sin reiniciar paginación
+            } else {
+                alert('Error al guardar: ' + (response.error || 'Error desconocido'));
+            }
+        }, 'json');
+    });
+
+    // Modo edición en la tabla
+    $('#placesTable tbody').on('click', '.edit-btn', function () {
+        const row = $(this).closest('tr');
+        const button = $(this);
+
+        if (!row.hasClass('editing')) {
+            row.addClass('editing');
+            row.find('td').each(function (i) {
+                if (i < 4) { // Las 4 columnas editables
+                    const valor = $(this).text();
+                    $(this).html(`<input type="text" value="${valor}" class="edit-input">`);
                 }
             });
-            $(this).text('Guardar');
+            button.text('Guardar');
         } else {
-            // guardar cambios
-            tr.removeClass('editing');
-            tr.find('td').each(function (index) {
-                if (index < 4) {
-                    const input = $(this).find('input');
-                    if (input.length) {
-                        $(this).text(input.val());
-                    }
+            const id = row.attr('data-id');
+            const inputs = row.find('input');
+            const nombre = inputs.eq(0).val();
+            const beneficiarios = inputs.eq(1).val();
+            const encargado = inputs.eq(2).val();
+            const direccion = inputs.eq(3).val();
+
+            $.post('../../backend/php/locales/actualizar_comedor.php', {
+                id,
+                nombre,
+                beneficiarios,
+                encargado,
+                direccion
+            }, function (res) {
+                if (res.success) {
+                    row.removeClass('editing');
+                    inputs.eq(0).parent().text(nombre);
+                    inputs.eq(1).parent().text(beneficiarios);
+                    inputs.eq(2).parent().text(encargado);
+                    inputs.eq(3).parent().text(direccion);
+                    button.text('Editar');
+                } else {
+                    alert('Error al actualizar: ' + (res.error || 'Desconocido'));
                 }
-            });
-            $(this).text('Editar');
-            // actualizar la fila en DataTable
-            rowData.invalidate();
+            }, 'json');
         }
     });
 });

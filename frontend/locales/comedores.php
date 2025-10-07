@@ -34,21 +34,6 @@
                     </tr>
                 </thead>
                 <tbody id="placesTableBody">
-                    <tr>
-                        <td contenteditable="false">Centro Comunal Norte</td>
-                        <td contenteditable="false">120</td>
-                        <td contenteditable="false">Ana Gómez</td>
-                        <td contenteditable="false">Av. Libertad 102</td>
-                        <td><button class="edit-btn">Editar</button></td>
-                    </tr>
-                    <!-- otras filas de ejemplo -->
-                    <tr>
-                        <td contenteditable="false">Centro Este</td>
-                        <td contenteditable="false">85</td>
-                        <td contenteditable="false">Luis Pérez</td>
-                        <td contenteditable="false">Jr. Los Olivos 350</td>
-                        <td><button class="edit-btn">Editar</button></td>
-                    </tr>
                 </tbody>
             </table>
         </div>
@@ -60,9 +45,13 @@
             <span id="closeModalBtn" class="close">&times;</span>
             <h3>Agregar Nuevo Lugar</h3>
             <form id="placeForm">
+                <label> Nombre del lugar: </label>
                 <input type="text" id="nombreLugar" placeholder="Nombre del lugar" required />
+                <label> Número de beneficiarios: </label>
                 <input type="number" id="beneficiarios" placeholder="Total de beneficiarios" required />
+                <label> Nombre del encargado: </label>
                 <input type="text" id="encargado" placeholder="Encargado" required />
+                <label> Dirección: </label>
                 <input type="text" id="direccion" placeholder="Dirección" required />
                 <button type="submit">Guardar Lugar</button>
             </form>
