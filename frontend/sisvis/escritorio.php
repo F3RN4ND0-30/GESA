@@ -12,7 +12,6 @@
 </head>
 
 <body>
-
     <?php include __DIR__ . '/../navbar/navbar.php'; ?>
 
     <div class="container">

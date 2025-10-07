@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $resultado = $stmt->get_result();
 
     if ($resultado->num_rows > 0) {
-        echo "<script>alert('Inicio de sesión exitoso'); window.location='inicio.php';</script>";
+        echo "<script>alert('Inicio de sesión exitoso'); window.location='../sisvis/escritorio.php';</script>";
     } else {
         echo "<script>alert('Usuario o contraseña incorrectos'); window.location='login.php';</script>";
     }

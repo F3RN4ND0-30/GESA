@@ -22,7 +22,7 @@ function active($pages)
         <div class="nav-menu">
             <!-- Ajusta los href a tus rutas reales si cambian -->
             <a href="../sisvis/escritorio.php" class="nav-link <?= active(['escritorio.php']) ?>">Dashboard</a>
-            <a href="../entradas/registro_productos.php" class="nav-link <?= active(['entradas.php']) ?>">Entradas</a>
+            <a href="#" class="nav-link <?= active(['entradas.php']) ?>">Entradas</a>
             <a href="#" class="nav-link <?= active(['pecosa.php']) ?>">PECOSA</a>
             <a href="#" class="nav-link <?= active(['almacen.php']) ?>">Almacén</a>
             <a href="#" class="nav-link <?= active(['reportes.php']) ?>">Reportes</a>
