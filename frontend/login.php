@@ -1,12 +1,17 @@
 <?php
 require_once __DIR__ . '/../backend/php/autenticacion.php';
 
+/* Si ya está logueado, mándalo al escritorio */
+redirigir_si_logueado('../frontend/sisvis/escritorio.php');
+
+/* Evita caché del login (importante para atrás/adelante del navegador) */
+no_cache();
+
 $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $error = gs_do_login();
+    $error = hacer_login();
     if ($error === '') {
-        // Login exitoso - redirigir al escritorio
-        header('Location: /frontend/sisvis/escritorio.php');
+        header('Location: ../frontend/sisvis/escritorio.php');
         exit;
     }
 }
@@ -27,7 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="../backend/css/login/loginresponsive.css" />
 
     <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -35,7 +41,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Animate.css para animaciones de SweetAlert -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
 
 <body <?= $error ? 'data-error="' . htmlspecialchars($error, ENT_QUOTES, 'UTF-8') . '"' : '' ?>>
@@ -97,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <form method="POST" class="form" autocomplete="off" id="formLogin" novalidate>
                     <!-- Token CSRF -->
-                    <input type="hidden" name="csrf" value="<?= htmlspecialchars(gs_csrf_token(), ENT_QUOTES, 'UTF-8') ?>">
+                    <input type="hidden" name="csrf" value="<?= htmlspecialchars(token_csrf(), ENT_QUOTES, 'UTF-8') ?>">
 
                     <!-- Campo Usuario -->
                     <label class="field">
@@ -105,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="control">
                             <i class="fa-solid fa-user"></i>
                             <input type="text" name="usuario" placeholder="Ingrese su usuario" required minlength="3"
-                                autocomplete="username" aria-label="Usuario">
+                                autocomplete="username" aria-label="Usuario" autofocus>
                         </div>
                         <small class="field-error"></small>
                     </label>
